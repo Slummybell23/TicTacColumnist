@@ -34,21 +34,4 @@ public interface ITicTacColumnist
     public int checkWinner(); //returns -1 = no winner ,1 = O, 2 = X
 
     public boolean isBoardFull(); //Check if board is full
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
