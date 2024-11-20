@@ -15,6 +15,18 @@ public class TicTacColumnist implements ITicTacColumnist
     }
 
     @Override
+    public int getColumn()
+    {
+        char nullChar = '\u0000';
+        int col = random(3);
+        if(board[0][col] != nullChar && board[1][col] != nullChar && board[2][col] != nullChar){
+            if(curPlayer == 'X')currPlayer = 'O'; else currPlayer = 'X';
+            return -1;
+        }
+        return col;
+    }
+
+    @Override
     public boolean validateInput(int col, int row)
     {
         //Checks if out of bounds
@@ -49,11 +61,6 @@ public class TicTacColumnist implements ITicTacColumnist
     }
 
     @Override
-    public boolean isBoardFull()
-    {
-        return false;
-    }
-    
     public int checkWinner()
     {
         for(int i = 0; i < 3; i++){
@@ -68,16 +75,10 @@ public class TicTacColumnist implements ITicTacColumnist
             return (board[2][0] == 'X'? 2: 1);
         return -1;
     }
-    public int getColumn()
+
+    @Override
+    public boolean isBoardFull()
     {
-        char nullChar = '\u0000';
-        int col = random(3);
-        if(board[0][col] != nullChar && board[1][col] != nullChar && board[2][col] != nullChar){
-            if(curPlayer == 'X')currPlayer = 'O'; else currPlayer = 'X';
-            return -1;
-        }
-        return col;
+        return false;
     }
-
-
 }
