@@ -1,7 +1,9 @@
+import java.util.*;
+
 public class TicTacColumnist implements ITicTacColumnist
 {
     private char[][] board = ITicTacColumnist.board;
-    private char curPlayer = ITicTacColumnist.curPlayer;
+    private char currPlayer = ITicTacColumnist.curPlayer;
     private int numMoves = ITicTacColumnist.numMoves;
     private  char winner = ITicTacColumnist.winner;
 
@@ -9,7 +11,7 @@ public class TicTacColumnist implements ITicTacColumnist
     public void startGame()
     {
         board = new char[3][3];
-        curPlayer = 'O';
+        currPlayer = 'O';
         numMoves = 0;
         winner = '*';
     }
@@ -18,7 +20,8 @@ public class TicTacColumnist implements ITicTacColumnist
     public int getColumn()
     {
         char nullChar = '\u0000';
-        int col = random(3);
+        Random rand = new Random();
+        int col = rand.nextInt(3);
         if(board[0][col] != nullChar && board[1][col] != nullChar && board[2][col] != nullChar){
             if(curPlayer == 'X')currPlayer = 'O'; else currPlayer = 'X';
             return -1;
@@ -43,13 +46,13 @@ public class TicTacColumnist implements ITicTacColumnist
     @Override
     public void makeMove(int col, int row)
     {
-        board[row][col] = curPlayer;
+        board[row][col] = currPlayer;
 
         //Flips player
         if(curPlayer == 'O')
-            curPlayer = 'X';
+            currPlayer = 'X';
         else if(curPlayer == 'X')
-            curPlayer = 'O';
+            currPlayer = 'O';
 
         numMoves++;
     }
