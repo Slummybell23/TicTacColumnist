@@ -51,7 +51,21 @@ public class TicTacColumnist implements ITicTacColumnist
     @Override
     public int gameStatus()
     {
-        return 0;
+       int statusOut = checkWinner(); // Calls the checkWinner method. to determine if there is a winner.
+		boolean isFull = false;
+
+		if (statusOut == -1) { // Checks if board is full if there is no winner.
+
+			isFull = isBoardFull(); // Calls the isBoardFull method to determine if the board is full.
+
+			if (isFull) { // If the board is full changes the return.
+
+				statusOut = 0;
+
+			}
+		}
+
+		return statusOut; // Returns the game status.
     }
 
     @Override
@@ -63,6 +77,12 @@ public class TicTacColumnist implements ITicTacColumnist
     @Override
     public boolean isBoardFull()
     {
-        return false;
+      boolean isFull = false;
+		if (numMoves == 9) { // Checks if 9 moves have been made and the board is full
+
+			isFull = true;
+		}
+
+		return isFull;
     }
 }
