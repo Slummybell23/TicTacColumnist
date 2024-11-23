@@ -1,30 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
- *
- * @author cachesalyers
- */
+* Represents the game and 
+* 
+*/
 public class TicTakToe extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TicTakToe
-     */
     
     TicTacColumnist game = new TicTacColumnist();
-
-                    
+         
+    /**
+    * Initializes the game.
+    */
     public TicTakToe() {
         game.startGame();
         game.setColumn();
         initComponents();
-        hideWinner(0);
     }
-    
-    public static int row = -1;
-    
+        
+    /**
+    * Resets buttons to their default states.
+    */
     private void resetComponents()
     {
         button00.setText("*");
@@ -38,39 +32,42 @@ public class TicTakToe extends javax.swing.JFrame {
         button22.setText("*");
     }
     
-    private void hideWinner(int col)
-    {
-        winButton.remove(winButton);
-    }
     
+    /**
+    * Does a chain of actions based on a user clicking one of the buttons
+    * to make a move.
+    * @param button The button the user clicked.
+    * @param row The row the button is located in.
+    * @param col The column the button is located in.
+    */
     private void buttonAction(javax.swing.JButton button, int row, int col)
     {
         if(button.getText().equals("*") && game.getColumn() == col)
         {
-             button.setText(game.getPlayer() + "");
-             game.makeMove(col, row); 
+             button.setText(game.getPlayer() + ""); //Changes button on page
+             game.makeMove(col, row); //Changes array in the backend
              
-             int status = game.gameStatus();
+             int status = game.gameStatus(); //Does logic to determine state of the game
              switch (status) {
-                case -1:
+                case -1: //No change in game, keep playing
                     game.setColumn();
                     break;
-                case 1:
+                case 1: //O won
                     //winner logic for O
-                    game.startGame();
-                    game.setColumn();
+                    game.startGame(); //Initializes backend of game
+                    game.setColumn(); //Initializes column
                     resetComponents();
                     break;
-                case 2:
+                case 2: //X won
                     //winner logic for X
-                    game.startGame();
-                    game.setColumn();
+                    game.startGame(); //Initializes backend of game
+                    game.setColumn(); //Initializes column
                     resetComponents();
                     break;
-                case 0:
+                case 0: //No one won, tie.
                     //TIE
-                    game.startGame();
-                    game.setColumn();
+                    game.startGame(); //Initializes backend of game
+                    game.setColumn(); //Initializes column
                     resetComponents();
                     break;
                 default:
@@ -80,8 +77,7 @@ public class TicTakToe extends javax.swing.JFrame {
         
         while(game.getColumn() == -1)
         {
-            //Display pause
-            game.flipPlayer();
+            game.flipPlayer(); //Skips player
             game.setColumn();
             
         }

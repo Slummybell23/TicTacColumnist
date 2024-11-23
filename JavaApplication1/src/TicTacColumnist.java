@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * Class to hold the backend of the game.
+ * 
+ */
 public class TicTacColumnist implements ITicTacColumnist
 {
     private char[][] board = ITicTacColumnist.board;
@@ -9,7 +13,6 @@ public class TicTacColumnist implements ITicTacColumnist
     private int column;
     
 
-    @Override
     public void startGame()
     {
         board = new char[3][3];
@@ -50,7 +53,7 @@ public class TicTacColumnist implements ITicTacColumnist
         else if(currPlayer == 'X')
             currPlayer = 'O';
     }
-    @Override
+
     public void makeMove(int col, int row)
     {
         board[row][col] = currPlayer;
@@ -64,7 +67,6 @@ public class TicTacColumnist implements ITicTacColumnist
         numMoves++;
     }
 
-    @Override
     public int gameStatus()
     {
         int statusOut = checkWinner(); // Calls the checkWinner method. to determine if there is a winner.
@@ -80,7 +82,6 @@ public class TicTacColumnist implements ITicTacColumnist
         return statusOut; // Returns the game status.
     }
 
-    @Override
     public int checkWinner()
     {
         for(int i = 0; i < 3; i++){
@@ -119,7 +120,6 @@ public class TicTacColumnist implements ITicTacColumnist
         return -1;
     }
 
-    @Override
     public boolean isBoardFull()
     {
         boolean isFull = false;

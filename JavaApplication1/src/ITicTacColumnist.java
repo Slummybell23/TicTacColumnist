@@ -1,3 +1,7 @@
+/**
+ * Interface to tell how to make the backend of the game.
+ *  
+ */
 public interface ITicTacColumnist
 {
     public char[][] board = new char[3][3];
@@ -5,15 +9,39 @@ public interface ITicTacColumnist
     public int numMoves = 0;
     public char winner = '*';
 
-    public void startGame(); // Initializes fields to defaults
+    /**
+     * Initializes fields to defaults.
+     */
+    public void startGame();
 
-    public void setColumn(); //Returns valid column index from random one run. If column full, returns -1 and flip player
+    /**
+    * Returns valid column index from random one run. 
+    * If column full, returns -1 and flip player.
+    */
+    public void setColumn();
 
-    public void makeMove(int col, int row); //increment numMoves and modify board, and flip player...
+    /**
+     * Increment numMoves and modify board, and flip player.
+     * @param col tells what column the turn is being made in.
+     * @param row tells what row the turn is being made in.
+     */
+    public void makeMove(int col, int row); 
 
-    public int gameStatus(); // -1 = no change in status, 0 = tie, 1 = O, 2 = X
+    /**
+     * Checks the status of the game.
+     * @return -1 = no change in status, 0 = tie, 1 = O, 2 = X
+     */
+    public int gameStatus();
 
-    public int checkWinner(); //returns -1 = no winner ,1 = O, 2 = X
+    /**
+     * Finds the winner of game
+     * @return -1 = no winner ,1 = O, 2 = X
+     */
+    public int checkWinner();
 
-    public boolean isBoardFull(); //Check if board is full
+    /**
+     * Check if board is full.
+     * @return true if board is full, false if not.
+     */
+    public boolean isBoardFull();
 }
