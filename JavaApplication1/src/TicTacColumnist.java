@@ -32,8 +32,7 @@ public class TicTacColumnist implements ITicTacColumnist
         Random rand = new Random();
         int col = rand.nextInt(3);
         if(board[0][col] != nullChar && board[1][col] != nullChar && board[2][col] != nullChar){
-            if(curPlayer == 'X')currPlayer = 'O'; else currPlayer = 'X';
-                col = -1;
+            col = -1;
         }
         
         column = col;

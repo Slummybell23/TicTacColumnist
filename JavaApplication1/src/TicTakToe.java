@@ -13,6 +13,8 @@ public class TicTakToe extends javax.swing.JFrame {
         game.startGame();
         game.setColumn();
         initComponents();
+        player.setText(game.getPlayer() + "");
+        column.setText(game.getColumn() + "");
     }
         
     /**
@@ -29,6 +31,32 @@ public class TicTakToe extends javax.swing.JFrame {
         button20.setText("*");
         button21.setText("*");
         button22.setText("*");
+        
+        button01.setEnabled(true);
+        button02.setEnabled(true);
+        button10.setEnabled(true);
+        button00.setEnabled(true);
+        button11.setEnabled(true);
+        button12.setEnabled(true);
+        button20.setEnabled(true);
+        button21.setEnabled(true);
+        button22.setEnabled(true);
+    }
+    
+    /**
+    * Disables buttons.
+    */
+    private void disableBoard()
+    {
+        button00.setEnabled(false);
+        button01.setEnabled(false);
+        button02.setEnabled(false);
+        button10.setEnabled(false);
+        button11.setEnabled(false);
+        button12.setEnabled(false);
+        button20.setEnabled(false);
+        button21.setEnabled(false);
+        button22.setEnabled(false);
     }
     
     
@@ -53,21 +81,18 @@ public class TicTakToe extends javax.swing.JFrame {
                     break;
                 case 1: //O won
                     //winner logic for O
-                    game.startGame(); //Initializes backend of game
-                    game.setColumn(); //Initializes column
-                    resetComponents();
+                    disableBoard();
+                    winner.setText("O");
                     break;
                 case 2: //X won
                     //winner logic for X
-                    game.startGame(); //Initializes backend of game
-                    game.setColumn(); //Initializes column
-                    resetComponents();
+                    disableBoard();
+                    winner.setText("X");
                     break;
                 case 0: //No one won, tie.
                     //TIE
-                    game.startGame(); //Initializes backend of game
-                    game.setColumn(); //Initializes column
-                    resetComponents();
+                    disableBoard();
+                    winner.setText("Tie");
                     break;
                 default:
                     break;
@@ -79,6 +104,8 @@ public class TicTakToe extends javax.swing.JFrame {
             game.flipPlayer(); //Skips player
             game.setColumn();
             
+            player.setText(game.getPlayer() + "");
+            column.setText(game.getColumn() + "");
         }
         
         player.setText(game.getPlayer() + "");
@@ -110,6 +137,7 @@ public class TicTakToe extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         winner = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        restartButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -246,6 +274,18 @@ public class TicTakToe extends javax.swing.JFrame {
 
         jLabel3.setText("Winner");
 
+        restartButton.setText("Restart?");
+        restartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButtonMouseClicked(evt);
+            }
+        });
+        restartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,8 +331,11 @@ public class TicTakToe extends javax.swing.JFrame {
                         .addComponent(winner))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel3)))
-                .addContainerGap(325, Short.MAX_VALUE))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(restartButton)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +353,9 @@ public class TicTakToe extends javax.swing.JFrame {
                             .addComponent(button11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(player, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -319,13 +364,14 @@ public class TicTakToe extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6)
                         .addComponent(winner, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(column, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(column, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(button20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(582, 582, 582)
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -402,6 +448,19 @@ public class TicTakToe extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_playerActionPerformed
 
+    private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_restartButtonActionPerformed
+
+    private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
+        resetComponents();
+        game.startGame(); //Initializes backend of game
+        game.setColumn(); //Initializes column
+        player.setText(game.getPlayer() + "");
+        column.setText(game.getColumn() + "");
+        winner.setText("");
+    }//GEN-LAST:event_restartButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -454,6 +513,7 @@ public class TicTakToe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private java.awt.Panel panel1;
     private javax.swing.JButton player;
+    private javax.swing.JButton restartButton;
     private javax.swing.JButton winner;
     // End of variables declaration//GEN-END:variables
 }
