@@ -1,3 +1,8 @@
+ /********************************
+ Name:           Cache Salyers, John, Aiden
+ Problem Set:    4
+ Due Date:       11/25/2024
+ ********************************/
 
 /**
 * Represents and runs the game.
@@ -73,7 +78,7 @@ public class TicTakToe extends javax.swing.JFrame {
              int status = game.gameStatus(); //Does logic to determine state of the game
              switch (status) {
                 case -1: //No change in game, keep playing
-                    game.setColumn();
+                    game.setColumn(game.getBoard());
                     break;
                 case 1: //O won
                     //winner logic for O
@@ -104,7 +109,7 @@ public class TicTakToe extends javax.swing.JFrame {
         while(game.getColumn() == -1)
         {
             game.flipPlayer(); //Skips player
-            game.setColumn();
+            game.setColumn(game.getBoard());
             
             player.setText(game.getPlayer() + "");
             column.setText(game.getColumn() + 1 + "");
@@ -473,7 +478,7 @@ public class TicTakToe extends javax.swing.JFrame {
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
     resetComponents();
     game.startGame(); //Initializes backend of game
-    game.setColumn(); //Initializes column
+    game.setColumn(game.getBoard()); //Initializes column
     player.setText(game.getPlayer() + "");
     column.setText(game.getColumn() + 1 + "");
     winner.setText("No Winner");
